@@ -75,7 +75,7 @@ export const Todo = ({login, adres, data}) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body : JSON.parse({
+      body : JSON.parse({s
         todo: JSON.parse({title, checked}) 
       })
     })
