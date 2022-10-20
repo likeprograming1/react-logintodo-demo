@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Header from "./Header";
+import Header from "./Login/Header";
 import white from "../images/white.png";
 import blackk from "../images/black.png";
 import { useState } from "react";
@@ -88,7 +88,7 @@ const SignUp = ({toggle, togglehandler}) => {
         pw, repw, birth, 
         handleName, handleEmail, handleId, 
         handlePw, handleRepw, handlebirth, handleLogin] = useLogin(`http://localhost:3000/data`); 
-        
+
   return (
     <SignMain toggle={toggle}>
       <Header toggle={toggle} togglehandler={togglehandler}></Header>

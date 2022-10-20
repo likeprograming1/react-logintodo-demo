@@ -3,7 +3,7 @@ import white from "../images/white.png";
 import blackk from "../images/black.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import {useNavigate} from "react-router"
 const MainContainer = styled.main`
   display: flex;
   align-items: center;
@@ -106,35 +106,48 @@ const Formspan = styled.div`
     }}
   }
 `
-const Main = ({toggle, data, setLogin}) => {
+const Main = ({toggle, setLogin, data, adres, setAdres, setUsername}) => {
+  
   const [id, setId] = useState();
   const [pw, setPw] = useState();
-  
+  const navigation = useNavigate();
   const handleId = (e) => {
-    console.log(e.target.value);
     setId(e.target.value);
   }
   const handlePw = (e) => {
-    console.log(e);
     setPw(e.target.value);
   }
-  const handlelogin = () => {
-    fetch("http://localhost:3000/data",{
-      method: "POST",
-      body: JSON.stringify({
-        userId : id,
-        password : pw,
-      })
-    })
-    .then(res => res.json())
-    .then((result)=>{
-      if(result.message === 'SUCCESS'){
-        window.location.href = "http://localhost:3001/Todomain";
-      }else {
-          alert('잘못된 회원정보입니다.');
-      }
-    })
+  const handlelogin = (id, pw) => {
     
+      data && data.map(data=>{
+        if(data.userId === id && data.password === pw) {
+          // console.log(data.id);s
+          setAdres(data.id-1);
+          setUsername(data.name);
+          setLogin(true);
+          navigation('/Todomain');
+        }
+        
+      })
+      if(adres){
+        // fetch("http://localhost:3000/data"+ adres,{
+        //     method:"POST",
+        //     body: JSON.stringify({
+        //       userId: id,
+        //       password: pw,
+        //     })
+        //   })
+        //   .then((res) => {res.json()})
+        //   .then((result) =>{
+        //     console.log(result);
+        //     setLogin(true);
+        //     navigation('/Todomain');
+        //     // window.location.href = "http://localhost:3001/Todomain";
+        //   })
+      }else {
+        console.log('아이디나 비밀번호를 확인해주세요');
+      }
+      // console.log(adres);
   }
   return (
     <MainContainer>
@@ -149,7 +162,7 @@ const Main = ({toggle, data, setLogin}) => {
             <Link to="/signup" style={{textDecoration: 'none'}}><Formspan className="loginOne" toggle={toggle}>회원가입</Formspan></Link>
             <Formspan className="loginTwo" toggle={toggle}>아이디/비밀번호 찾기</Formspan>
           </div>
-            <LoginButton toggle={toggle} onClick={()=>handlelogin()}>Login</LoginButton>
+            <LoginButton toggle={toggle} onClick={()=>handlelogin(id,pw)}>Login</LoginButton>
         </SectionLogin>
       </MainSection>
     </MainContainer>

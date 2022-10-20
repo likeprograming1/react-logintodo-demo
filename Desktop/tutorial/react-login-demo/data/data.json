@@ -8,7 +8,7 @@
       "email": "kim@naver.com",
       "birthday": "951129",
       "todo": [
-        {
+        { "id" : 1,
           "title": "첫번째",
           "checked": false
         }
@@ -17,16 +17,36 @@
     {
       "name": "한승진",
       "userId": "dk2216",
-      "password": "hsj123456",
+      "password": "12345678",
       "email": "hsj2216@naver.com",
       "birthday": "951129",
+      "todo": [
+        { "id" : 1,
+          "title": "첫번째",
+          "checked": false
+        },
+        { "id" : 2,
+          "title": "두번째",
+          "checked": false
+        },
+        { "id" : 3,
+          "title": "세번째",
+          "checked": false
+        },
+        { "id" : 4,
+          "title": "넷번째",
+          "checked": false
+        }
+      ],
       "id": 2
     },
     {
+      "name": "한승진",
+      "userId": "dk22168",
+      "password": "hsj12345",
+      "email": "hsj1234@naver.com",
+      "birthday": "951129",
       "id": 3
-    },
-    {
-      "id": 4
     }
   ]
 }
